@@ -6,11 +6,14 @@ import json
 def format_consume(consume, is_taxe):
     result = {}
     consume = consume.split(" ")
-    result["date"] = consume[0]
+    has_date = True if len(consume[0].split("-")) == 3 else False
+    result["date"] = consume[0] if has_date else None
+
     result['amount'] = float(consume[-1].replace(".", "").replace(",", "."))
     # If is a taxe, the description is before the last element
     limit = -1 if is_taxe else -2
-    result['description'] = " ".join(consume[1:limit])
+    start = 1 if has_date else 0
+    result['description'] = " ".join(consume[start:limit])
 
     result['divisa'] = 'USD' if 'USD' in result['description'] else 'PESOS'
     return result
