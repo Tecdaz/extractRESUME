@@ -79,7 +79,7 @@ def run():
         "actual_consumes_usd": actual_consumes_usd
     }
 
-    with open(f"results{file_name}.json", "w") as file:
+    with open(f"results{file_name[:-4]}.json", "w") as file:
         file.write(json.dumps(results, indent=2))
 
 
