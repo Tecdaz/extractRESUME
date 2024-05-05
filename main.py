@@ -26,7 +26,7 @@ def run():
     text = ""
     # Extract text from pdf
     with pdfplumber.open(file_name) as pdf:
-        for i in range(1, 3):
+        for i in range(0, 3):
             page = pdf.pages[i]
             text += page.extract_text()
 
